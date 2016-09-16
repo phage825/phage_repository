@@ -4,7 +4,7 @@
 // import
 // ****************************************
 import javax.swing.JFrame;
-
+import javax.swing.ImageIcon;
 
 // ****************************************
 // メインクラス
@@ -25,6 +25,12 @@ class MatchWord extends JFrame {
         
         // ウィンドウの位置とサイズ
         setBounds(100, 100, 640, 480);
+        
+        // ****************************************
+        // Icon
+        // ****************************************
+        ImageIcon icon = new ImageIcon("./MWIcon.png");
+        setIconImage(icon.getImage());
         
         // 閉じるボタンで閉じるようにする
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
