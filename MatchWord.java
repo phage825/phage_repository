@@ -8,14 +8,15 @@ import javax.swing.JPanel;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.JButton;
 import java.awt.Container;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Insets;
-
-
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 // ****************************************
 // メインクラス
@@ -28,7 +29,11 @@ class MatchWord extends JFrame {
     }
 }
 
-class MWindow extends JFrame {
+class MWindow extends JFrame implements ActionListener{
+    JTextField text1;
+    JTextField text2;
+    JLabel label;
+    
     // ****************************************
     // コンストラクタ
     // ****************************************
@@ -70,7 +75,7 @@ class MWindow extends JFrame {
         // ****************************************
         JPanel textBox1 = new JPanel();
         
-        JTextField text1 = new JTextField(30);
+        text1 = new JTextField(30);
         text1.setPreferredSize(new Dimension(400, 25));
         text1.setFont(new Font(Font.DIALOG_INPUT, Font.PLAIN, 14));
         text1.setHorizontalAlignment(JTextField.LEFT);
@@ -84,7 +89,7 @@ class MWindow extends JFrame {
         // ****************************************
         JPanel textBox2 = new JPanel();
         
-        JTextField text2 = new JTextField(30);
+        text2 = new JTextField(30);
         text2.setPreferredSize(new Dimension(400, 25));
         text2.setFont(new Font(Font.DIALOG_INPUT, Font.PLAIN, 14));
         text1.setHorizontalAlignment(JTextField.LEFT);
@@ -93,5 +98,35 @@ class MWindow extends JFrame {
         
         contentPane.add(textBox2, BorderLayout.EAST);
         
+        // ****************************************
+        // ボタン
+        // ****************************************
+        JPanel buttonPanel = new JPanel();
+        JButton button = new JButton("比較");
+        button.addActionListener(this);
+        
+        buttonPanel.add(button);
+        contentPane.add(buttonPanel, BorderLayout.CENTER);
+        
+        // ****************************************
+        // 結果表示
+        // ****************************************
+        label = new JLabel();
+        
+        label.setFont(new Font(Font.DIALOG_INPUT, Font.PLAIN, 20));
+        label.setHorizontalAlignment(JTextField.CENTER);
+        label.setPreferredSize(new Dimension(200, 100));
+        contentPane.add(label, BorderLayout.SOUTH);
+    }
+    
+    public void actionPerformed(ActionEvent e){
+        String textLeft  = text1.getText();
+        String textRight = text2.getText();
+        
+        if(textLeft.equals(textRight)) {
+            label.setText("Match!");
+        } else {
+            label.setText("Unmatch...");
+        }
     }
 }
